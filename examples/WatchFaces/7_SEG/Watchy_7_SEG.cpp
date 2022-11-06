@@ -1,6 +1,6 @@
 #include "Watchy_7_SEG.h"
 
-#define DARKMODE true
+#define DARKMODE false
 
 const uint8_t BATTERY_SEGMENT_WIDTH = 7;
 const uint8_t BATTERY_SEGMENT_HEIGHT = 11;
@@ -71,8 +71,8 @@ void Watchy7SEG::drawDate(){
     display.println(tmYearToCalendar(currentTime.Year));// offset from 1970, since year is stored in uint8_t
 }
 void Watchy7SEG::drawSteps(){
-    // reset step counter at midnight
-    if (currentTime.Hour == 0 && currentTime.Minute == 0){
+    // reset step counter at 3 am
+    if (currentTime.Hour == 3 && currentTime.Minute == 0){
       sensor.resetStepCounter();
     }
     uint32_t stepCount = sensor.getCounter();
